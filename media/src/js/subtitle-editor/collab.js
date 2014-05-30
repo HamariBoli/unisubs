@@ -21,37 +21,6 @@
     var module = angular.module('amara.SubtitleEditor.collab', []);
 
     module.controller('CollabController', function($scope, $sce, $timeout, EditorData) {
-
-        // Some modules can be opened and closed. These are the default states.
-        $scope.modulesOpen = {
-            notes: false,
-            pane: false
-        };
-
-        // These states define whether the modules are enabled at all.
-        $scope.modulesEnabled = {
-            approval: false,
-            notes: false,
-            pane: false
-        };
-
-        // If this is a task, set up the proper panels.
-        if (EditorData.task_needs_pane) {
-            $scope.modulesOpen = {
-                notes: true,
-                pane: true
-            };
-
-            $scope.modulesEnabled = {
-                approval: true,
-                notes: true,
-                pane: true
-            };
-        }
-
-        $scope.toggleDocking = function(module) {
-            $scope.modulesOpen[module] = !$scope.modulesOpen[module];
-        };
         $scope.canApprove = function() {
             return $scope.workingSubtitles.subtitleList.isComplete();
         }

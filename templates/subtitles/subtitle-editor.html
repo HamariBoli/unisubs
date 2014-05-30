@@ -321,39 +321,6 @@
                 </div>
             </div>
         </section>
-        <section class="collab column" ng-controller="CollabController">
-            <a class="toggle-pane"
-               ng-click="toggleDocking('pane')"
-               ng-show="modulesEnabled.pane && !modulesOpen.pane">
-                Open Collab
-            </a>
-            <aside ng-show="modulesEnabled.pane && modulesOpen.pane">
-            <!--
-            2534: always keep the collab panel open when we use it.
-            We should uncomment this when the collab code gets integrated
-                <a class="toggle-pane"
-                   ng-click="toggleDocking('pane')"
-                   ng-show="modulesOpen.pane">
-                    Close Collab
-                </a>
-                -->
-                <div class="notes module"
-                     ng-show="modulesEnabled.notes"
-                     ng-class="{open: modulesOpen.notes}">
-                    <a class="title" ng-click="toggleDocking('notes')">Notes</a>
-                    <div class="content" ng-show="modulesOpen.notes">
-                        <textarea ng-model="collab.notes" ng-change="session.notesChanged()"></textarea>
-                    </div>
-                </div>
-                <div class="approval module" ng-show="modulesEnabled.approval">
-                    <div class="content">
-                        <button class="send-back" ng-click="session.rejectTask()">Send Back</button>
-                        <button ng-disabled="!canApprove()" class="approve" ng-click="session.approveTask()">Accept</button>
-                    </div>
-                </div>
-                <p ng-show="errorMessage()" class="error">[[ errorMessage() ]]</p>
-            </aside>
-        </section>
         <section class="right column">
             <div class="steps-container"
                 ng-controller="WorkflowProgressionController">
@@ -420,6 +387,16 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class="collab" ng-controller="CollabController" ng-show="collab.enabled">
+                <h2>{% trans 'Task' %}</h2>
+                <h3>{% trans 'Notes' %}</h3>
+                <textarea ng-model="collab.notes" ng-change="session.notesChanged()"></textarea>
+                <div class="buttons group">
+                    <button class="send-back" ng-click="session.rejectTask()">Send Back</button>
+                    <button ng-disabled="!canApprove()" class="approve" ng-click="session.approveTask()">Accept</button>
+                </div>
+                <p ng-show="errorMessage()" class="error">[[ errorMessage() ]]</p>
             </div>
         </section>
     </section>

@@ -224,6 +224,7 @@ var angular = angular || null;
             duration: null,
         };
         $scope.collab = {
+            enabled: EditorData.task_needs_pane,
             notes: EditorData.savedNotes
         };
         $scope.exitToVideoPage = function() {
